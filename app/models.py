@@ -45,4 +45,5 @@ class Product(BaseModel):
     description = db.Column(db.Text)
     price = db.Column(db.Numeric(10, 2), nullable=False)
 
+    user_id = db.Column(UUID(as_uuid=True), db.ForeignKey("users.id"), nullable=False)
     user = db.relationship("User", back_populates="products")
