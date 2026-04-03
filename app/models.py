@@ -31,7 +31,7 @@ class BaseModel(db.Model):
 
 
 class User(BaseModel):
-    __tablename__ = 'users'
+    __tablename__ = "users"
 
     email = db.Column(db.String(120), unique=True, nullable=False)
     password_hash = db.Column(db.String(255), nullable=False)
@@ -40,7 +40,7 @@ class User(BaseModel):
 
 
 class Product(BaseModel):
-    __tablename__ = 'products'
+    __tablename__ = "products"
 
     name = db.Column(db.String(255), nullable=False)
     description = db.Column(db.Text)

@@ -7,6 +7,4 @@ def init_jwt_callbacks(jwt):
     def check_if_token_revoked(jwt_header, jwt_payload):
         jti = jwt_payload["jti"]
 
-        return db.session.query(
-            db.exists().where(TokenBlocklist.jti == jti)
-        ).scalar()
+        return db.session.query(db.exists().where(TokenBlocklist.jti == jti)).scalar()
