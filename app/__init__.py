@@ -4,7 +4,7 @@ from . import models
 from .config import Config
 from .jwt_callbacks import init_jwt_callbacks
 from .extensions import db, migrate, jwt, cors
-from .routes import main_bp, auth_bp, product_bp
+from .routes import index_bp, auth_bp, product_bp
 
 
 def create_app():
@@ -19,7 +19,7 @@ def create_app():
     db.init_app(app)
     migrate.init_app(app, db)
 
-    app.register_blueprint(main_bp)
+    app.register_blueprint(index_bp)
     app.register_blueprint(auth_bp)
     app.register_blueprint(product_bp)
 
