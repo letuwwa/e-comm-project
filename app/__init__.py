@@ -2,14 +2,16 @@ from flask import Flask
 
 from . import models
 from .config import Config
-from .extensions import db, migrate, jwt
 from .jwt_callbacks import init_jwt_callbacks
+from .extensions import db, migrate, jwt, cors
 from .routes import main_bp, auth_bp, product_bp
 
 
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
+
+    cors.init_app(app, origins=app.config["CORS_ORIGINS"])
 
     jwt.init_app(app)
     init_jwt_callbacks(jwt)

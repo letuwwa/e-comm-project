@@ -4,13 +4,14 @@ from datetime import timedelta
 
 
 load_dotenv()
-for variable in ("DATABASE_URL", "JWT_SECRET_KEY"):
+for variable in ("DATABASE_URL", "JWT_SECRET_KEY", "CORS_ORIGINS"):
     if not os.getenv(variable):
         raise RuntimeError(f"Missing required env variable: {variable}")
 
 
 class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    CORS_ORIGINS = os.getenv("CORS_ORIGINS")
     JWT_SECRET_KEY = os.environ.get("JWT_SECRET_KEY")
     SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL")
     JWT_REFRESH_TOKEN_EXPIRES = timedelta(days=7)
