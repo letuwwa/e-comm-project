@@ -10,6 +10,13 @@ from app.models import Product
 bp = Blueprint("product", __name__)
 
 
+@bp.route("/products/public", methods=["GET"])
+def get_all_products():
+    products = Product.query.all()
+
+    return [serialize_product(product, include_owner=True) for product in products]
+
+
 @bp.route("/products", methods=["POST"])
 @jwt_required()
 def create_product():

@@ -14,7 +14,10 @@ def get_json_data(request: Request) -> dict[str, Any]:
 
 
 def serialize_product(
-    product: Product, *, include_description: bool = False
+    product: Product,
+    *,
+    include_description: bool = False,
+    include_owner: bool = False,
 ) -> dict[str, Any]:
     payload = {
         "id": str(product.id),
@@ -24,6 +27,9 @@ def serialize_product(
 
     if include_description:
         payload["description"] = product.description
+
+    if include_owner:
+        payload["owner_email"] = product.user.email
 
     return payload
 
